@@ -1,0 +1,28 @@
+#Scraping Numbers from HTML using BeautifulSoup
+#In this assignment you will write a Python program similar 
+#to http://www.pythonlearn.com/code/urllink2.py. The program will use urllib to read the HTML from the data files below, 
+#and parse the data, extracting numbers and compute the sum of the numbers in the file. 
+
+#Data Format
+
+#The file is a table of names and comment counts. You can ignore most of the data in the file except for lines like the following:
+
+#<tr><td>Modu</td><td><span class="comments">90</span></td></tr>
+#<tr><td>Kenzie</td><td><span class="comments">88</span></td></tr>
+#<tr><td>Hubert</td><td><span class="comments">87</span></td></tr>
+import re
+
+filename = input('Input filename:')
+if len(filename) < 1:
+    filename = 'regex_sum_1823602.txt'
+
+res = 0
+fh = open(filename)
+for line in fh:
+    tmp = re.findall('[0-9]+', line)
+
+    
+    for x in tmp:
+        res = res + int(x)
+
+print(res)

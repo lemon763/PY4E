@@ -1,0 +1,17 @@
+#In this assignment you will write a Python program that expands on http://www.py4e.com/code3/urllinks.py. The program will use urllib to read the HTML from the data files below,
+#extract the href= vaues from the anchor tags, scan for a tag that is in a particular position relative to the first name in the list, follow that link and repeat the process a
+#number of times and report the last name you find.
+import socket
+
+mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+mysock.connect(('data.pr4e.org', 80))
+cmd = 'GET http://data.pr4e.org/intro-short.txt HTTP/1.0\r\n\r\n'.encode()
+mysock.send(cmd)
+
+while True:
+    data = mysock.recv(512)
+    if len(data) < 1:
+        break
+    print(data.decode(),end='')
+
+mysock.close()
